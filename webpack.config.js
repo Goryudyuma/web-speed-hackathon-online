@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { merge } = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(
   {
@@ -50,9 +51,16 @@ module.exports = merge(
 
     target: 'web',
 
-    devtool: 'inline-source-map',
+    //devtool: 'inline-source-map',
 
     mode: 'none',
+
+    optimization: {
+      minimize: true,
+      minimizer: [new TerserPlugin()],
+    },
+
+    performance: { hints: false },
   },
   { mode: 'production' },
 );
