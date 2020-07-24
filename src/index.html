@@ -11,7 +11,13 @@
       src="/<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"
     ></script>
     <% } %>
-    <link rel="stylesheet" type="text/css" href="/app.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/app.css"
+      media="print"
+      onload="this.media='all'"
+    />
   </head>
   <body>
     <div id="root"></div>
