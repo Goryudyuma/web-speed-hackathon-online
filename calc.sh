@@ -1,5 +1,11 @@
 #/bin/sh
 
+echo "wake up: start"
+curl -s $1 > /dev/null
+echo "wake up: done"
+
+echo "bench: start"
+
 function access() {
   resultraw=$(lighthouse $1 --chrome-flags="--headless" --output=json 2>/dev/null) 
 
@@ -28,5 +34,8 @@ echo "Entry2: $EntryPage2Score"
 NotFoundPageScore=`access $1/b0000/entry/e0100`
 echo "NotFound: $NotFoundPageScore"
 
+echo "bench: done"
+
 ScoreSum=`echo "$TopPageScore+$BlogPageScore+$EntryPage1Score+$EntryPage2Score+$NotFoundPageScore"|bc`
 echo "Last Score: $ScoreSum"
+
